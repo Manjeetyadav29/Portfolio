@@ -1,0 +1,82 @@
+<section class="pt-28 pb-16" aria-label="Skills and Expertise">
+  <div class="section-container">
+
+    <app-section-header label="Expertise" title="Skills & Technologies"
+      subtitle="A comprehensive toolkit built over 3+ years of enterprise Angular development." />
+
+    <!-- Category Filter -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12" appScrollReveal="fade-up" role="tablist"
+      aria-label="Skill categories">
+      @for (cat of categories; track cat.key; let i = $index) {
+      <button (click)="setCategory(cat.key)" (keydown)="onTabKeydown($event, i)"
+        [class.bg-primary-600]="activeCategory() === cat.key" [class.text-white]="activeCategory() === cat.key"
+        [class.dark:bg-primary-500]="activeCategory() === cat.key" [class.bg-slate-100]="activeCategory() !== cat.key"
+        [class.dark:bg-slate-800]="activeCategory() !== cat.key" [class.text-slate-600]="activeCategory() !== cat.key"
+        [class.dark:text-slate-300]="activeCategory() !== cat.key" class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
+                 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500" role="tab"
+        [attr.aria-selected]="activeCategory() === cat.key" [attr.tabindex]="activeCategory() === cat.key ? 0 : -1"
+        type="button">
+        {{ cat.label }}
+      </button>
+      }
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="space-y-12">
+      @for (group of filteredGroups; track group.category; let gi = $index) {
+      <div class="card p-6 sm:p-8" appScrollReveal="fade-up" [revealDelay]="gi * 100">
+        <!-- Group Header -->
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-blue-600
+                        flex items-center justify-center flex-shrink-0">
+            @switch (group.icon) {
+            @case ('code') {
+            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+            </svg>
+            }
+            @case ('architecture') {
+            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 0h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
+            </svg>
+            }
+            @case ('performance') {
+            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+            </svg>
+            }
+            @case ('integration') {
+            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.386-3.04a4.5 4.5 0 00-1.242-7.244l-4.5-4.5a4.5 4.5 0 00-6.364 6.364l1.757 1.757" />
+            </svg>
+            }
+            @case ('tools') {
+            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M11.42 15.17l-5.384 5.383a2.625 2.625 0 01-3.712-3.712l5.383-5.384M4.155 19.845l4.95-4.95M6 10.5l1.568-1.568a3.75 3.75 0 015.304 0L15 11.068l.568-.568a3.75 3.75 0 015.304 0l1.128 1.128a3.75 3.75 0 010 5.304L17.568 21m-5.688-5.688L6 10.5" />
+            </svg>
+            }
+            }
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-900 dark:text-white text-lg">{{ group.label }}</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400">{{ group.description }}</p>
+          </div>
+        </div>
+
+        <!-- Skills Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5">
+          @for (skill of group.skills; track skill.name; let si = $index) {
+          <app-skill-card [skill]="skill" [delay]="si * 50" />
+          }
+        </div>
+      </div>
+      }
+    </div>
+
+  </div>
+</section>

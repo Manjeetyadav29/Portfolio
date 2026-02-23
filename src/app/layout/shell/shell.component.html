@@ -1,0 +1,9 @@
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<app-header />
+
+<main id="main-content" class="relative min-h-screen" [@routeAnimation]="prepareRoute(outlet)">
+  <router-outlet #outlet="outlet" />
+</main>
+
+<app-footer />

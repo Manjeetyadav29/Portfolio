@@ -1,0 +1,95 @@
+<footer class="bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800" role="contentinfo">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- Brand -->
+      <div>
+        <a routerLink="/" class="flex items-center gap-2 mb-4">
+          <div
+            class="w-9 h-9 rounded-lg bg-gradient-to-br from-primary-500 to-blue-600 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <rect x="2" y="2" width="4" height="4" fill="white" />
+              <rect x="8" y="2" width="4" height="4" fill="white" opacity="0.6" />
+              <rect x="14" y="2" width="4" height="4" fill="white" />
+              <rect x="2" y="8" width="4" height="4" fill="white" opacity="0.6" />
+              <rect x="8" y="8" width="4" height="4" fill="white" />
+              <rect x="14" y="8" width="4" height="4" fill="white" opacity="0.6" />
+              <rect x="2" y="14" width="4" height="4" fill="white" />
+              <rect x="8" y="14" width="4" height="4" fill="white" opacity="0.6" />
+              <rect x="14" y="14" width="4" height="4" fill="white" />
+            </svg>
+          </div>
+          <span class="font-bold text-lg text-slate-900 dark:text-white">
+            Manjeet<span class="text-primary-600 dark:text-primary-400">Yadav</span>
+          </span>
+        </a>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed max-w-xs">
+          Senior Angular Frontend Engineer crafting enterprise-scale web applications with modern architecture and
+          performance excellence.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="font-semibold text-slate-900 dark:text-white mb-4 text-sm uppercase tracking-wider">Quick Links</h3>
+        <nav aria-label="Footer navigation">
+          <ul class="space-y-2">
+            <li>
+              <a routerLink="/about"
+                class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
+            </li>
+            <li>
+              <a routerLink="/skills"
+                class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Skills</a>
+            </li>
+            <li>
+              <a routerLink="/case-studies"
+                class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Case
+                Studies</a>
+            </li>
+            <li>
+              <a routerLink="/blog"
+                class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Blog</a>
+            </li>
+            <li>
+              <a routerLink="/contact"
+                class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Social & Back to Top -->
+      <div>
+        <h3 class="font-semibold text-slate-900 dark:text-white mb-4 text-sm uppercase tracking-wider">Connect</h3>
+        <app-social-links containerClass="gap-2" />
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div
+      class="mt-10 pt-8 border-t border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-slate-500 dark:text-slate-400">
+        &copy; {{ currentYear }} Manjeet Yadav. All rights reserved.
+      </p>
+
+      <div class="flex items-center gap-4">
+        <span class="text-xs text-slate-400 dark:text-slate-500">
+          Built with Angular &amp; Tailwind CSS
+        </span>
+
+        <!-- Back to Top -->
+        <button (click)="scrollToTop()" class="inline-flex items-center justify-center w-9 h-9 rounded-lg
+                 bg-slate-200 dark:bg-slate-700
+                 text-slate-600 dark:text-slate-300
+                 hover:bg-primary-100 dark:hover:bg-primary-900/30
+                 hover:text-primary-600 dark:hover:text-primary-400
+                 transition-all duration-200" aria-label="Scroll to top" type="button">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>

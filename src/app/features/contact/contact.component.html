@@ -1,0 +1,193 @@
+<section class="pt-28 pb-16" aria-label="Contact">
+  <div class="section-container">
+
+    <app-section-header
+      label="Get In Touch"
+      title="Let's Work Together"
+      subtitle="Have a project in mind? I'd love to hear about it. Fill out the form below and I'll get back to you promptly." />
+
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-5xl mx-auto">
+
+      <!-- Contact Info -->
+      <div class="lg:col-span-2 space-y-8" appScrollReveal="fade-right">
+        <div>
+          <h3 class="font-semibold text-slate-900 dark:text-white text-lg mb-4">Contact Information</h3>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+            I'm currently available for freelance work, full-time positions, and consulting engagements.
+          </p>
+        </div>
+
+        <!-- Email -->
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-slate-900 dark:text-white">Email</p>
+            <a [href]="'mailto:' + email"
+               class="text-sm text-primary-600 dark:text-primary-400 hover:underline">
+              {{ email }}
+            </a>
+          </div>
+        </div>
+
+        <!-- Response Time -->
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-slate-900 dark:text-white">Response Time</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Usually within 24 hours</p>
+          </div>
+        </div>
+
+        <!-- Social -->
+        <div>
+          <p class="text-sm font-medium text-slate-900 dark:text-white mb-3">Find me on</p>
+          <app-social-links containerClass="gap-2" />
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="lg:col-span-3" appScrollReveal="fade-left">
+        @if (submitted()) {
+          <!-- Success State -->
+          <div class="card p-8 text-center">
+            <div class="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="heading-3 text-slate-900 dark:text-white mb-2">Message Sent!</h3>
+            <p class="text-slate-600 dark:text-slate-400 mb-6">
+              Thank you for reaching out. I'll get back to you as soon as possible.
+            </p>
+            <button (click)="submitted.set(false)" class="btn-outline" type="button">
+              Send Another Message
+            </button>
+          </div>
+        } @else {
+          <!-- Form -->
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="card p-6 sm:p-8 space-y-6" novalidate>
+
+            <!-- Honeypot (hidden from users, catches bots) -->
+            <div class="absolute opacity-0 -z-10" aria-hidden="true">
+              <label for="website">Website</label>
+              <input id="website" type="text" [formControl]="honeypot" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- Name -->
+            <div>
+              <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                Full Name <span class="text-red-500" aria-hidden="true">*</span>
+              </label>
+              <input
+                id="name"
+                type="text"
+                formControlName="name"
+                class="input-field"
+                [class.input-error]="hasError('name')"
+                placeholder="Your full name"
+                autocomplete="name"
+                [attr.aria-invalid]="hasError('name')"
+                [attr.aria-describedby]="hasError('name') ? 'name-error' : null">
+              @if (hasError('name')) {
+                <p id="name-error" class="error-message" role="alert">{{ getError('name') }}</p>
+              }
+            </div>
+
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                Email Address <span class="text-red-500" aria-hidden="true">*</span>
+              </label>
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                class="input-field"
+                [class.input-error]="hasError('email')"
+                placeholder="your.email@example.com"
+                autocomplete="email"
+                [attr.aria-invalid]="hasError('email')"
+                [attr.aria-describedby]="hasError('email') ? 'email-error' : null">
+              @if (hasError('email')) {
+                <p id="email-error" class="error-message" role="alert">{{ getError('email') }}</p>
+              }
+            </div>
+
+            <!-- Subject -->
+            <div>
+              <label for="subject" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                Subject <span class="text-red-500" aria-hidden="true">*</span>
+              </label>
+              <input
+                id="subject"
+                type="text"
+                formControlName="subject"
+                class="input-field"
+                [class.input-error]="hasError('subject')"
+                placeholder="What's this about?"
+                [attr.aria-invalid]="hasError('subject')"
+                [attr.aria-describedby]="hasError('subject') ? 'subject-error' : null">
+              @if (hasError('subject')) {
+                <p id="subject-error" class="error-message" role="alert">{{ getError('subject') }}</p>
+              }
+            </div>
+
+            <!-- Message -->
+            <div>
+              <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                Message <span class="text-red-500" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="message"
+                formControlName="message"
+                rows="5"
+                class="input-field resize-y"
+                [class.input-error]="hasError('message')"
+                placeholder="Tell me about your project or opportunity..."
+                [attr.aria-invalid]="hasError('message')"
+                [attr.aria-describedby]="hasError('message') ? 'message-error' : null"></textarea>
+              @if (hasError('message')) {
+                <p id="message-error" class="error-message" role="alert">{{ getError('message') }}</p>
+              }
+            </div>
+
+            <!-- Error Banner -->
+            @if (error()) {
+              <div class="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800" role="alert">
+                <p class="text-sm text-red-700 dark:text-red-300">{{ error() }}</p>
+              </div>
+            }
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              class="btn-primary w-full"
+              [disabled]="submitting()">
+              @if (submitting()) {
+                <svg class="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Sending...
+              } @else {
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                </svg>
+                Send Message
+              }
+            </button>
+          </form>
+        }
+      </div>
+
+    </div>
+  </div>
+</section>

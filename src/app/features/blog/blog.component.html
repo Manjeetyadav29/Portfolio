@@ -1,0 +1,64 @@
+<section class="pt-28 pb-16" aria-label="Blog">
+  <div class="section-container">
+
+    <app-section-header
+      label="Insights"
+      title="Technical Blog"
+      subtitle="Deep dives into Angular, RxJS, performance optimization, and modern frontend architecture." />
+
+    <!-- Blog Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      @for (post of posts; track post.slug; let i = $index) {
+        <article class="card group overflow-hidden" appScrollReveal="fade-up" [revealDelay]="i * 100">
+          <!-- Card Content -->
+          <div class="p-6 sm:p-8">
+            <!-- Meta -->
+            <div class="flex items-center gap-3 mb-4">
+              <time [attr.datetime]="post.publishedDate" class="text-sm text-slate-500 dark:text-slate-400">
+                {{ post.publishedDate }}
+              </time>
+              <span class="text-slate-300 dark:text-slate-600" aria-hidden="true">&middot;</span>
+              <span class="text-sm text-slate-500 dark:text-slate-400">{{ post.readingTime }} min read</span>
+            </div>
+
+            <!-- Title -->
+            <h3 class="heading-3 text-slate-900 dark:text-white mb-3
+                       group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+              <a [routerLink]="['/blog', post.slug]" class="hover:underline decoration-2 underline-offset-4">
+                {{ post.title }}
+              </a>
+            </h3>
+
+            <!-- Excerpt -->
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+              {{ post.excerpt }}
+            </p>
+
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-2 mb-6">
+              @for (tag of post.tags; track tag) {
+                <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium
+                             bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+                  {{ tag }}
+                </span>
+              }
+            </div>
+
+            <!-- Read More -->
+            <a [routerLink]="['/blog', post.slug]"
+               class="inline-flex items-center gap-2 text-sm font-semibold
+                      text-primary-600 dark:text-primary-400
+                      hover:text-primary-700 dark:hover:text-primary-300
+                      transition-colors group/link">
+              Read Article
+              <svg class="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+        </article>
+      }
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <title>Manjeet Yadav | Senior Angular Frontend Engineer</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio of Manjeet Yadav - Senior Angular Frontend Engineer specializing in enterprise-scale Angular applications, SSR, and performance optimization.">
+  <meta name="author" content="Manjeet Yadav">
+
+  <!-- Open Graph defaults (overridden dynamically per route by SeoService) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Manjeet Yadav Portfolio">
+  <meta property="og:title" content="Manjeet Yadav | Senior Angular Frontend Engineer">
+  <meta property="og:description" content="Portfolio of Manjeet Yadav - Senior Angular Frontend Engineer specializing in enterprise-scale Angular applications.">
+
+  <!-- Twitter Card defaults -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Manjeet Yadav | Senior Angular Frontend Engineer">
+
+  <!-- Preconnect to font CDN for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Inline theme initialization to prevent FOUC (Flash of Unstyled Content) -->
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('portfolio-theme');
+        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch(e) {}
+    })();
+  </script>
+</head>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 antialiased transition-colors duration-300 min-h-screen">
+  <app-root></app-root>
+</body>
+</html>
