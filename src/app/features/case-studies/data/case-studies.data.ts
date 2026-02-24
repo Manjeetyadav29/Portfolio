@@ -2,6 +2,73 @@ import { CaseStudy } from '@shared/models/portfolio.models';
 
 export const CASE_STUDIES_DATA: CaseStudy[] = [
   {
+    slug: 'jira-replica',
+    title: 'Jira Replica — Project Management Platform',
+    subtitle: 'Full-Stack Angular 17 Application',
+    description: 'Built a comprehensive Jira-like project management platform from scratch with real-time Kanban/Scrum boards, sprint management, issue tracking, and team collaboration — featuring Angular 17, NgRx state management, drag-and-drop, and a Node.js/Prisma/PostgreSQL backend with WebSocket support.',
+    challenge: 'Creating a full-featured project management tool that mirrors Jira\'s core capabilities: multi-project support with Kanban and Scrum boards, a rich issue hierarchy (Epic, Story, Task, Sub-task, Bug), sprint planning with velocity tracking, drag-and-drop board management, real-time notifications via WebSockets, and secure authentication with Google OAuth and 2FA.',
+    solution: 'Designed a monorepo architecture separating frontend (Angular 17 standalone components) and backend (Express + Prisma ORM). Implemented NgRx for centralized state management, Angular CDK for performant drag-and-drop, Chart.js for analytics dashboards (burndown/velocity charts), and Socket.IO for real-time collaboration. JWT-based auth with role-based access control ensures security.',
+    architecture: 'Monorepo with Angular 17 frontend and Express.js backend. Frontend uses standalone components, NgRx store with effects for async operations, Angular Material UI, and CDK drag-and-drop. Backend uses Prisma ORM with PostgreSQL, JWT + refresh tokens, Socket.IO rooms for per-project real-time updates, and Winston structured logging.',
+    results: [
+      { label: 'Issue Types', before: '0', after: '5 Types', improvement: 'Epic, Story, Task, Bug, Sub-task' },
+      { label: 'Board Views', before: '0', after: '2 Modes', improvement: 'Kanban + Scrum Boards' },
+      { label: 'Real-time', before: 'None', after: 'WebSocket', improvement: 'Live notifications & updates' },
+      { label: 'Auth Methods', before: 'None', after: '3 Methods', improvement: 'Email, Google OAuth, 2FA' }
+    ],
+    technologies: ['Angular 17', 'NgRx', 'Angular Material', 'Angular CDK', 'TypeScript', 'Node.js', 'Express', 'Prisma ORM', 'PostgreSQL', 'Socket.IO', 'Chart.js', 'JWT', 'Google OAuth'],
+    codeSnippet: `// NgRx Board Effects — Drag-and-Drop Issue Reorder
+@Injectable()
+export class BoardEffects {
+  moveIssue$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BoardActions.moveIssue),
+      concatMap(({ issueId, targetStatus, position }) =>
+        this.boardService.reorderIssue(issueId, targetStatus, position).pipe(
+          map(updated => BoardActions.moveIssueSuccess({ issue: updated })),
+          tap(() => this.socket.emit('board:updated', { issueId })),
+          catchError(error => of(BoardActions.moveIssueFailure({ error })))
+        )
+      )
+    )
+  );
+}`,
+    year: 2024
+  },
+  {
+    slug: 'mmc-multi-channel-connector',
+    title: 'MMC — Multi-Channel Connector Platform',
+    subtitle: 'Enterprise JHipster Application',
+    description: 'Developed and maintained a large-scale enterprise Multi-Channel Connector (MMC) platform built on JHipster, enabling businesses to unify operations across multiple sales and distribution channels with a rich Angular dashboard, API-first architecture, and robust Spring Boot backend.',
+    challenge: 'An enterprise platform managing multi-channel business operations grew to hundreds of entities and complex workflows. The Angular frontend needed to handle dynamic dashboards, internationalization (i18n), complex data grids with Syncfusion components, and seamless integration with a Spring Boot microservice backend — all while maintaining code quality via SonarQube and CI/CD pipelines.',
+    solution: 'Leveraged JHipster\'s scaffolding for entity generation, Liquibase migrations, and Swagger/OpenAPI documentation. Built custom Angular modules for onboarding workflows, dashboard analytics with Chart.js, and multi-language support via ngx-translate. Implemented PWA capabilities for offline access and Docker containerization for consistent deployments.',
+    architecture: 'JHipster monolith with Spring Boot backend and Angular frontend. Entity-driven development with JDL for code generation. Webpack-optimized builds, ng-bootstrap UI components, Syncfusion data grids, and i18n via ngx-translate. CI/CD with SonarQube quality gates and Docker deployment.',
+    results: [
+      { label: 'Channels Managed', before: '1', after: '10+', improvement: 'Unified multi-channel ops' },
+      { label: 'Onboarding Time', before: '2 weeks', after: '2 days', improvement: '86% faster' },
+      { label: 'API Coverage', before: '40%', after: '95%', improvement: 'Swagger/OpenAPI documented' },
+      { label: 'Code Quality', before: 'No checks', after: 'A Rating', improvement: 'SonarQube enforced' }
+    ],
+    technologies: ['Angular 10', 'JHipster', 'Spring Boot', 'TypeScript', 'ng-bootstrap', 'Syncfusion', 'Chart.js', 'ngx-translate', 'Webpack', 'Docker', 'SonarQube', 'Liquibase', 'Swagger'],
+    codeSnippet: `// Multi-Channel Dashboard — Dynamic Widget Loader
+@Component({
+  selector: 'mmc-dashboard',
+  template: \`
+    <div class="dashboard-grid">
+      <mmc-widget *ngFor="let widget of activeWidgets"
+        [config]="widget"
+        [channelData]="channelData$ | async"
+        (refresh)="onWidgetRefresh($event)">
+      </mmc-widget>
+    </div>
+  \`
+})
+export class DashboardComponent implements OnInit {
+  channelData$ = this.store.select(selectAllChannels);
+  activeWidgets = this.dashboardService.getActiveWidgets();
+}`,
+    year: 2023
+  },
+  {
     slug: 'shopify-embedded-app',
     title: 'Shopify Embedded App',
     subtitle: 'E-Commerce Platform Integration',

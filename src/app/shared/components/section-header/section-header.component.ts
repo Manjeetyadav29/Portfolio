@@ -7,9 +7,15 @@ import { ScrollRevealDirective } from '@shared/directives/scroll-reveal.directiv
   imports: [ScrollRevealDirective],
   template: `
     <div class="text-center mb-12 sm:mb-16" appScrollReveal="fade-up">
-      <p class="text-primary-600 dark:text-primary-400 font-semibold text-sm uppercase tracking-widest mb-3">
-        {{ label }}
-      </p>
+      @if (label) {
+        <div class="inline-flex items-center gap-2 mb-4">
+          <span class="h-px w-8 bg-primary-400 dark:bg-primary-500"></span>
+          <p class="text-primary-600 dark:text-primary-400 font-semibold text-sm uppercase tracking-widest">
+            {{ label }}
+          </p>
+          <span class="h-px w-8 bg-primary-400 dark:bg-primary-500"></span>
+        </div>
+      }
       <h2 class="heading-2 text-slate-900 dark:text-white mb-4">
         {{ title }}
       </h2>
@@ -18,7 +24,7 @@ import { ScrollRevealDirective } from '@shared/directives/scroll-reveal.directiv
           {{ subtitle }}
         </p>
       }
-      <div class="mt-6 mx-auto w-20 h-1 bg-gradient-to-r from-primary-500 to-blue-400 rounded-full" aria-hidden="true"></div>
+      <div class="mt-6 mx-auto w-16 h-1 bg-gradient-to-r from-transparent via-primary-500 to-transparent rounded-full" aria-hidden="true"></div>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush

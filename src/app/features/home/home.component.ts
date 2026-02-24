@@ -31,6 +31,12 @@ export class HomeComponent implements OnInit {
     { value: "50%", label: "Performance Gains" },
   ];
 
+  readonly techStack = [
+    'Angular', 'TypeScript', 'RxJS', 'NgRx', 'Tailwind CSS', 'Node.js',
+    'PostgreSQL', 'Prisma', 'Socket.IO', 'SSR', 'Signals', 'JHipster',
+    'Shopify', 'REST APIs', 'OAuth', 'Docker', 'Git', 'CI/CD'
+  ];
+
   ngOnInit(): void {
     this.seo.updateMetaTags(ROUTE_SEO_CONFIG["/"]);
     this.jsonLd.setPersonSchema();

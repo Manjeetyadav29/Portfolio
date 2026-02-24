@@ -1,4 +1,10 @@
-<section class="pt-28 pb-16" aria-label="Contact">
+<section class="pt-28 pb-32 relative" aria-label="Contact">
+  <!-- Background accents -->
+  <div class="absolute inset-0 -z-10" aria-hidden="true">
+    <div class="absolute top-1/4 left-0 w-72 h-72 bg-primary-400/5 dark:bg-primary-500/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-400/5 dark:bg-blue-500/5 rounded-full blur-3xl"></div>
+  </div>
+
   <div class="section-container">
 
     <app-section-header
@@ -9,10 +15,10 @@
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-5xl mx-auto">
 
       <!-- Contact Info -->
-      <div class="lg:col-span-2 space-y-8" appScrollReveal="fade-right">
-        <div>
-          <h3 class="font-semibold text-slate-900 dark:text-white text-lg mb-4">Contact Information</h3>
-          <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+      <div class="lg:col-span-2 space-y-6" appScrollReveal="fade-right">
+        <div class="card p-6">
+          <h3 class="font-semibold text-slate-900 dark:text-white text-lg mb-3">Contact Information</h3>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
             I'm currently available for freelance work, full-time positions, and consulting engagements.
           </p>
         </div>

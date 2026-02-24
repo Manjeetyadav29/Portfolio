@@ -114,18 +114,24 @@
       </div>
     </div>
 
+    <!-- Section divider -->
+    <div class="section-divider mb-20"></div>
+
     <!-- Philosophy Cards -->
     <div class="mb-20">
-      <h3 class="heading-3 text-center text-slate-900 dark:text-white mb-10" appScrollReveal="fade-up">
+      <h3 class="heading-3 text-center text-slate-900 dark:text-white mb-3" appScrollReveal="fade-up">
         Engineering Philosophy
       </h3>
+      <p class="text-center text-slate-500 dark:text-slate-400 text-sm mb-10" appScrollReveal="fade-up">
+        Principles that guide every line of code
+      </p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         @for (item of philosophies; track item.title; let i = $index) {
-        <div class="card p-6 group" appScrollReveal="fade-up" [revealDelay]="i * 100">
+        <div class="card p-6 group hover:border-primary-200 dark:hover:border-primary-800/30" appScrollReveal="fade-up" [revealDelay]="i * 100">
           <div class="flex items-start gap-4">
             <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500 to-blue-600
                           flex items-center justify-center flex-shrink-0
-                          group-hover:scale-110 transition-transform duration-300">
+                          group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary-500/25 transition-all duration-300">
               @switch (item.icon) {
               @case ('architecture') {
               <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -163,25 +169,32 @@
       </div>
     </div>
 
+    <!-- Section divider -->
+    <div class="section-divider mb-20"></div>
+
     <!-- Timeline -->
     <div>
-      <h3 class="heading-3 text-center text-slate-900 dark:text-white mb-10" appScrollReveal="fade-up">
+      <h3 class="heading-3 text-center text-slate-900 dark:text-white mb-3" appScrollReveal="fade-up">
         Career Journey
       </h3>
+      <p class="text-center text-slate-500 dark:text-slate-400 text-sm mb-10" appScrollReveal="fade-up">
+        My professional growth path
+      </p>
       <div class="max-w-2xl mx-auto">
         @for (item of timeline; track item.year; let i = $index; let last = $last) {
-        <div class="relative pl-10 pb-10" [class.pb-0]="last" appScrollReveal="fade-up" [revealDelay]="i * 150">
+        <div class="relative pl-12 pb-12" [class.pb-0]="last" appScrollReveal="fade-up" [revealDelay]="i * 150">
           <!-- Timeline line -->
           @if (!last) {
-          <div class="absolute left-[15px] top-8 bottom-0 w-px bg-slate-200 dark:bg-slate-700" aria-hidden="true"></div>
+          <div class="absolute left-[17px] top-10 bottom-0 w-px bg-gradient-to-b from-primary-300 to-slate-200 dark:from-primary-700 dark:to-slate-700" aria-hidden="true"></div>
           }
           <!-- Timeline dot -->
-          <div class="absolute left-0 top-1 w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/30
-                        flex items-center justify-center border-2 border-primary-500" aria-hidden="true">
+          <div class="absolute left-0 top-1 w-9 h-9 rounded-full bg-primary-50 dark:bg-primary-900/30
+                        flex items-center justify-center border-2 border-primary-500
+                        shadow-sm shadow-primary-500/20" aria-hidden="true">
             <div class="w-2.5 h-2.5 rounded-full bg-primary-500"></div>
           </div>
           <!-- Content -->
-          <div>
+          <div class="card p-5 ml-2">
             <span class="badge mb-2">{{ item.year }}</span>
             <h4 class="font-semibold text-slate-900 dark:text-white text-lg">{{ item.title }}</h4>
             <p class="text-sm text-primary-600 dark:text-primary-400 font-medium mb-2">{{ item.company }}</p>
